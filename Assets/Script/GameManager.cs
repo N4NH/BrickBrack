@@ -1,9 +1,15 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public BoardManager board;
-    public PieceUI[] pieces; // giữ như này cũng được, nhưng phải kéo đúng object có PieceUI
+    public PieceUI[] pieces;
+
+    [Header("Game Over UI")]
+    public GameObject gameOverPanel;
+    public TMP_Text finalScoreText;
 
     private bool isGameOver = false;
 
@@ -11,22 +17,13 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        // Nếu gán sai thì báo rõ, KHÔNG kết luận thua
+        // Nếu thiếu reference thì không kết luận thua
         for (int i = 0; i < pieces.Length; i++)
         {
-            if (pieces[i] == null)
-            {
-                Debug.LogError($"GameManager: pieces[{i}] is NULL. Kéo ĐÚNG object có component PieceUI vào mảng pieces.");
+            if (pieces[i] == null || pieces[i].shape == null || pieces[i].shape.Length == 0)
                 return;
-            }
-            if (pieces[i].shape == null || pieces[i].shape.Length == 0)
-            {
-                Debug.LogError($"GameManager: pieces[{i}] shape NULL/empty. PieceUI chưa SetShape hoặc kéo sai object.");
-                return;
-            }
         }
 
-        // Check thật: chỉ thua nếu cả 3 đều không đặt được
         bool anyPlaceable = false;
         for (int i = 0; i < pieces.Length; i++)
         {
@@ -40,7 +37,25 @@ public class GameManager : MonoBehaviour
         if (!anyPlaceable)
         {
             isGameOver = true;
-            Debug.Log("GAME OVER");
+            ShowGameOver();
         }
+    }
+
+    void ShowGameOver()
+    {
+        if (finalScoreText != null)
+            finalScoreText.text = "Score: " + board.score;
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        // chặn kéo/thả nữa (optional)
+        Time.timeScale = 0f;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
