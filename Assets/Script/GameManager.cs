@@ -17,16 +17,16 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        // Nếu thiếu reference thì không kết luận thua
-        for (int i = 0; i < pieces.Length; i++)
-        {
-            if (pieces[i] == null || pieces[i].shape == null || pieces[i].shape.Length == 0)
-                return;
-        }
-
         bool anyPlaceable = false;
+        int validPiecesCount = 0;
+
         for (int i = 0; i < pieces.Length; i++)
         {
+            if (pieces[i] == null || !pieces[i].gameObject.activeInHierarchy) continue;
+            if (pieces[i].shape == null || pieces[i].shape.Length == 0) continue;
+
+            validPiecesCount++;
+
             if (board.CanPlaceAnywhere(pieces[i].shape))
             {
                 anyPlaceable = true;
@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!anyPlaceable)
+        // Chỉ kết luận Game Over nếu có ít nhất 1 piece hợp lệ đang hiển thị và KHÔNG THỂ đặt bất cứ piece nào
+        if (validPiecesCount > 0 && !anyPlaceable)
         {
             isGameOver = true;
             ShowGameOver();
