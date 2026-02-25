@@ -14,6 +14,12 @@ public static class PieceLibrary
         // 1x3 ngang
         new Vector2Int[] { new(0,0), new(1,0), new(2,0) },
 
+        //1x2 dọc
+        new Vector2Int[] { new(0,0), new(0,1) },
+
+        //1x3 dọc
+        new Vector2Int[] { new(0,0), new(0,1), new(0,2) },
+
         // 2x2
         new Vector2Int[] { new(0,0), new(1,0), new(0,1), new(1,1) },
 
@@ -55,6 +61,15 @@ public static class PieceLibrary
 
         //1x1 ô chéo đảo
         new Vector2Int[] { new(0,0), new(1,-1) },
+
+        //Dấu cộng
+        new Vector2Int[] { new(0,0), new(0,1), new(0,-1), new(1,0), new(-1,0) },
+
+        //Chữ T
+        new Vector2Int[] { new(0,0), new(0,1), new(0,-1), new(1,0) },
+
+        //Chữ T đảo
+        new Vector2Int[] { new(0,0), new(0,1), new(0,-1), new(-1,0) },
     };
 
     public static Vector2Int[] RandomShape()
