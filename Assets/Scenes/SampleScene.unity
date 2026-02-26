@@ -315,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 288234228}
   - component: {fileID: 288234231}
-  - component: {fileID: 288234230}
   - component: {fileID: 288234229}
   - component: {fileID: 288234232}
   - component: {fileID: 288234233}
@@ -359,36 +358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 1139525578}
   rectTransform: {fileID: 0}
---- !u!114 &288234230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288234227}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &288234231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -410,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 0}
-  cellPrefab: {fileID: 9080532668969001615, guid: 8bd3ad35cce2ef74cb208681c1dae2cd, type: 3}
+  cellPrefab: {fileID: 3132345044276251835, guid: b1a01f9f905626644b24aa5c7deb8281, type: 3}
   uiCellSize: 70
   shape: []
 --- !u!114 &288234233
@@ -555,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 0}
-  cellPrefab: {fileID: 9080532668969001615, guid: 8bd3ad35cce2ef74cb208681c1dae2cd, type: 3}
+  cellPrefab: {fileID: 3132345044276251835, guid: b1a01f9f905626644b24aa5c7deb8281, type: 3}
   uiCellSize: 70
   shape: []
 --- !u!114 &466322165
@@ -592,7 +561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9c938c3e8f2b20745a153107d9644d00, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1532,7 +1501,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1392478681}
   - component: {fileID: 1392478685}
-  - component: {fileID: 1392478684}
   - component: {fileID: 1392478683}
   - component: {fileID: 1392478682}
   - component: {fileID: 1392478686}
@@ -1575,7 +1543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 0}
-  cellPrefab: {fileID: 9080532668969001615, guid: 8bd3ad35cce2ef74cb208681c1dae2cd, type: 3}
+  cellPrefab: {fileID: 3132345044276251835, guid: b1a01f9f905626644b24aa5c7deb8281, type: 3}
   uiCellSize: 70
   shape: []
 --- !u!114 &1392478683
@@ -1592,36 +1560,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 1139525578}
   rectTransform: {fileID: 0}
---- !u!114 &1392478684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392478680}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1392478685
 CanvasRenderer:
   m_ObjectHideFlags: 0
