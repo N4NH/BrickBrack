@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+    public GoogleAdsMod adsMod;
     public BoardManager board;
     public PieceUI[] pieces;
 
@@ -13,6 +15,18 @@ public class GameManager : MonoBehaviour
 
     private bool isGameOver = false;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            adsMod.LoadInterstitialAd();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void CheckGameOver()
     {
         if (isGameOver) return;
@@ -58,5 +72,20 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void ShowAds()
+    {
+        if (adsMod != null)
+        {
+            adsMod.ShowInterstitialAd();
+        }
+    }
+    public void resetAds()
+    {
+        if (adsMod != null)
+        {
+            adsMod.DestroyInterstitialAd();
+            adsMod.LoadInterstitialAd();
+        }
     }
 }
