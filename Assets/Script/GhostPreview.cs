@@ -7,6 +7,7 @@ public class GhostPreview : MonoBehaviour
     public PieceUI pieceUI;                 // tự lấy nếu null
 
     private readonly List<GameObject> ghosts = new();
+    private readonly List<SpriteRenderer> ghostRenderers = new();
     private bool showing = false;
 
     void Awake()
@@ -45,7 +46,7 @@ public class GhostPreview : MonoBehaviour
 
             ghosts[i].transform.position = pos;
 
-            var sr = ghosts[i].GetComponent<SpriteRenderer>();
+            var sr = ghostRenderers[i];
             if (sr != null)
             {
                 // xanh nếu ok + inside, đỏ nếu fail
@@ -63,6 +64,7 @@ public class GhostPreview : MonoBehaviour
         for (int i = 0; i < ghosts.Count; i++)
             if (ghosts[i] != null) Destroy(ghosts[i]);
         ghosts.Clear();
+        ghostRenderers.Clear();
         showing = false;
     }
 
@@ -81,6 +83,7 @@ public class GhostPreview : MonoBehaviour
             if (col2D != null) col2D.enabled = false;
 
             ghosts.Add(g);
+            ghostRenderers.Add(g.GetComponent<SpriteRenderer>());
         }
     }
 }

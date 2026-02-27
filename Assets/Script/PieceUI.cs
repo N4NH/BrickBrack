@@ -20,19 +20,34 @@ public class PieceUI : MonoBehaviour
     {
         shape = newShape;
 
-        // clear old
+        // reuse cells
         for (int i = 0; i < cells.Count; i++)
-            if (cells[i] != null) Destroy(cells[i].gameObject);
-        cells.Clear();
+        {
+            if (cells[i] != null) cells[i].gameObject.SetActive(false);
+        }
 
-        // spawn new cells
+        // spawn or reuse cells
         for (int i = 0; i < shape.Length; i++)
         {
-            Image c = Instantiate(cellPrefab, container);
+            Image c;
+            if (i < cells.Count)
+            {
+                c = cells[i];
+                if (c == null)
+                {
+                    c = Instantiate(cellPrefab, container);
+                    cells[i] = c;
+                }
+                c.gameObject.SetActive(true);
+            }
+            else
+            {
+                c = Instantiate(cellPrefab, container);
+                cells.Add(c);
+            }
             RectTransform rt = c.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(uiCellSize, uiCellSize);
             rt.anchoredPosition = new Vector2(shape[i].x * uiCellSize, shape[i].y * uiCellSize);
-            cells.Add(c);
         }
 
         // auto size container

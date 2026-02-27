@@ -22,9 +22,34 @@ public class BoardManager : MonoBehaviour
     private Vector3 originWorld; // góc trái-dưới của board (world)
     public float cellSize = 1f;  // sẽ auto set theo frame
 
+    private bool[] fullRows;
+    private bool[] fullCols;
+    private Vector3[] uiCorners = new Vector3[4];
+
+    private readonly System.Collections.Generic.Queue<GameObject> blockPool = new();
+
+    private GameObject GetBlock()
+    {
+        if (blockPool.Count > 0)
+        {
+            GameObject b = blockPool.Dequeue();
+            b.SetActive(true);
+            return b;
+        }
+        return Instantiate(blockPrefab);
+    }
+
+    private void ReturnBlock(GameObject b)
+    {
+        b.SetActive(false);
+        blockPool.Enqueue(b);
+    }
+
     void Start()
     {
         grid = new Transform[width, height];
+        fullRows = new bool[height];
+        fullCols = new bool[width];
         UpdateScoreUI();
 
         if (worldCamera == null) worldCamera = Camera.main;
@@ -42,14 +67,13 @@ public class BoardManager : MonoBehaviour
         }
 
         // Lấy 4 góc world của UI Rect
-        Vector3[] corners = new Vector3[4];
-        boardFrameUI.GetWorldCorners(corners); 
-        // corners: 0=BL, 1=TL, 2=TR, 3=BR (world space của UI)
+        boardFrameUI.GetWorldCorners(uiCorners); 
+        // uiCorners: 0=BL, 1=TL, 2=TR, 3=BR (world space của UI)
 
         // Convert UI-world -> screen -> world của game camera
         // (vì corners đang theo world của Canvas, ta đưa về screen rồi ra world camera)
-        Vector3 blScreen = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
-        Vector3 trScreen = RectTransformUtility.WorldToScreenPoint(null, corners[2]);
+        Vector3 blScreen = RectTransformUtility.WorldToScreenPoint(null, uiCorners[0]);
+        Vector3 trScreen = RectTransformUtility.WorldToScreenPoint(null, uiCorners[2]);
 
         Vector3 blWorld = worldCamera.ScreenToWorldPoint(new Vector3(blScreen.x, blScreen.y, -worldCamera.transform.position.z));
         Vector3 trWorld = worldCamera.ScreenToWorldPoint(new Vector3(trScreen.x, trScreen.y, -worldCamera.transform.position.z));
@@ -101,7 +125,9 @@ public class BoardManager : MonoBehaviour
         if (!CanPlaceSingle(x, y)) return false;
 
         Vector3 pos = CellToWorld(x, y);
-        GameObject block = Instantiate(blockPrefab, pos, Quaternion.identity);
+        GameObject block = GetBlock();
+        block.transform.position = pos;
+        block.transform.rotation = Quaternion.identity;
         grid[x, y] = block.transform;
 
         ResolveLines();
@@ -130,7 +156,9 @@ public class BoardManager : MonoBehaviour
             int y = ay + shape[i].y;
 
             Vector3 pos = CellToWorld(x, y);
-            GameObject block = Instantiate(blockPrefab, pos, Quaternion.identity);
+            GameObject block = GetBlock();
+            block.transform.position = pos;
+            block.transform.rotation = Quaternion.identity;
             grid[x, y] = block.transform;
         }
 
@@ -149,8 +177,8 @@ public class BoardManager : MonoBehaviour
 
     void ResolveLines()
     {
-        bool[] fullRows = new bool[height];
-        bool[] fullCols = new bool[width];
+        for (int i = 0; i < height; i++) fullRows[i] = false;
+        for (int i = 0; i < width; i++) fullCols[i] = false;
 
         int rowsCount = 0;
         int colsCount = 0;
@@ -184,13 +212,30 @@ public class BoardManager : MonoBehaviour
                 if (grid[x, y] == null) continue;
                 if (fullRows[y] || fullCols[x])
                 {
-                    Destroy(grid[x, y].gameObject);
+                    ReturnBlock(grid[x, y].gameObject);
                     grid[x, y] = null;
                 }
             }
         }
 
         score += (rowsCount + colsCount) * 100;
+        UpdateScoreUI();
+    }
+
+    public void ResetBoard()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (grid[x, y] != null)
+                {
+                    ReturnBlock(grid[x, y].gameObject);
+                    grid[x, y] = null;
+                }
+            }
+        }
+        score = 0;
         UpdateScoreUI();
     }
 

@@ -71,7 +71,30 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isGameOver = false;
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
+
+        if (board != null)
+            board.ResetBoard();
+
+        if (pieces != null)
+        {
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                if (pieces[i] != null)
+                {
+                    pieces[i].gameObject.SetActive(true);
+                    pieces[i].SetShape(PieceLibrary.RandomShape());
+                    
+                    // Để an toàn, trả nó về đúng vị trí đầu tiên của khay (hoặc RectTransform tự handle)
+                    var rect = pieces[i].GetComponent<RectTransform>();
+                    DraggablePiece draggable = pieces[i].GetComponent<DraggablePiece>();
+                    // DraggablePiece tự kéo về lúc OnEndDrag rồi nên thường không bị lỗi pos
+                }
+            }
+        }
     }
     public void ShowAds()
     {
