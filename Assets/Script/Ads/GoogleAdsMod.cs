@@ -6,7 +6,6 @@ public class GoogleAdsMod : MonoBehaviour
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
 
-    // ID quảng cáo của bạn
     private string adUnitId = "ca-app-pub-1666762810401308/3063624792";
 
     private string interstitialAdUnitId = "ca-app-pub-1666762810401308/3098652924";
