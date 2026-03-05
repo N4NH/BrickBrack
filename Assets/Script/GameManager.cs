@@ -87,7 +87,6 @@ public class GameManager : MonoBehaviour
                 {
                     pieces[i].gameObject.SetActive(true);
                     pieces[i].SetShape(PieceLibrary.RandomShape());
-                    
                     // Để an toàn, trả nó về đúng vị trí đầu tiên của khay (hoặc RectTransform tự handle)
                     var rect = pieces[i].GetComponent<RectTransform>();
                     DraggablePiece draggable = pieces[i].GetComponent<DraggablePiece>();

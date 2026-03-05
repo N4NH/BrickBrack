@@ -7,7 +7,7 @@ public class DraggablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public RectTransform rectTransform;
 
     [Header("Drag Offset")]
-    public float dragOffsetY = 10; // Khoảng cách bay lên so với con trỏ (tính theo hệ World Space)
+    public float dragOffsetY = 3; // Khoảng cách bay lên so với con trỏ (tính theo hệ World Space)
 
     private Vector3 startPos;
     private PieceUI pieceUI;
@@ -47,7 +47,6 @@ public class DraggablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             Input.mousePosition,
             eventData.pressEventCamera,
             out Vector3 globalMousePos);
-            
         // Áp dụng offset (đoán chừng theo canvas scale, hoặc dùng code tay) 
         // Thay vì cộng delta, ta set cứng theo chuột + offset để nó không bị trôi
         rectTransform.position = globalMousePos + new Vector3(0, dragOffsetY, 0);
