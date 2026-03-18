@@ -6,18 +6,15 @@ public class GoogleAdsMod : MonoBehaviour
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
 
-    private string adUnitId = "ca-app-pub-1666762810401308/3063624792";
+    private string adUnitId = "ca-app-pub-1666762810401308/3098652924";
 
-    private string interstitialAdUnitId = "ca-app-pub-1666762810401308/3098652924";
+    private string interstitialAdUnitId = "ca-app-pub-1666762810401308/3063624792";
 
     void Start()
     {
         MobileAds.Initialize(initStatus =>
         {
             LoadBanner();
-        });
-        MobileAds.Initialize((InitializationStatus initStatus) =>
-        {
             LoadInterstitialAd();
         });
     }
@@ -33,6 +30,15 @@ public class GoogleAdsMod : MonoBehaviour
             adaptiveSize,
             AdPosition.Bottom
         );
+        bannerView.OnBannerAdLoaded += () =>
+    {
+        Debug.Log("Banner load thành công");
+    };
+
+        bannerView.OnBannerAdLoadFailed += (error) =>
+        {
+            Debug.LogError("Banner load thất bại: " + error.GetMessage());
+        };
         AdRequest request = new AdRequest();
         bannerView.LoadAd(request);
     }
@@ -51,7 +57,6 @@ public class GoogleAdsMod : MonoBehaviour
         }
     }
 
-    // Huỷ quảng cáo khi thoát scene
     private void OnDestroy()
     {
         if (bannerView != null)
