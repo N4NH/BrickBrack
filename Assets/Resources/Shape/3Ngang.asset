@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ffbf95e563eaf4786870faa0b24c9a, type: 3}
   m_Name: 3Ngang
   m_EditorClassIdentifier: 
-  columns: 0
-  rows: 0
-  board: []
+  columns: 3
+  rows: 1
+  board:
+  - column: 010101

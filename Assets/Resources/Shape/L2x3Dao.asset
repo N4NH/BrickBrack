@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ffbf95e563eaf4786870faa0b24c9a, type: 3}
   m_Name: L2x3Dao
   m_EditorClassIdentifier: 
-  columns: 0
-  rows: 0
-  board: []
+  columns: 2
+  rows: 3
+  board:
+  - column: 0001
+  - column: 0001
+  - column: 0101
