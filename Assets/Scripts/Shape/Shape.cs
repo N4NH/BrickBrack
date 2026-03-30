@@ -18,21 +18,51 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
     private RectTransform _transform;
     private bool _shapeDraggable = true;
     private Canvas _canvas;
+    private Vector3 _startPosition;
+    private bool _shapeActive = true;
 
     public void Awake(){
         _shapeStartScale = this.GetComponent<RectTransform>().localScale;
         _transform = this.GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
         _shapeDraggable = true;
-
+        _startPosition = _transform.localPosition;
+        _shapeActive = true;
     }
 
-    void Start()
-    {
-        
+    public bool InOnStartPosition(){
+        return _transform.localPosition == _startPosition;
+    }
+
+    public bool IsAnyOfShapeSquareActive(){
+        foreach(var square in _currentShape){
+            if(square.gameObject.activeSelf){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void DeactivateShape(){
+        if(_shapeActive){
+            foreach(var square in _currentShape){
+                square?.GetComponent<ShapeSquare>().DeactivateShape();
+            }
+        }
+        _shapeActive = false;
+    }
+
+    public void ActivateShape(){
+        if(!_shapeActive){
+            foreach(var square in _currentShape){
+                square?.GetComponent<ShapeSquare>().ActivateShape();
+            }
+        }
+        _shapeActive = true;
     }
 
     public void RequestNewShape(ShapeData shapeData){
+        _transform.localPosition = _startPosition;
         CreateShape(shapeData);
     }
     public void CreateShape(ShapeData shapeData){
