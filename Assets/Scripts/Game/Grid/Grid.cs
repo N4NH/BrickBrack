@@ -163,14 +163,29 @@ public class Grid : MonoBehaviour
             }
         Lines.Add(data.ToArray());
     }
+    //square
+    for(var square =0 ; square < 9; square++)
+    {
+        List<int> data = new List<int> (9);
+        for(var index=0; index <9; index++)
+            {
+                data.Add(_lineIndicator.square_data[index,square]);
+            }
+            Lines.Add(data.ToArray());
+    }
+
+    
     var completedLines = CheckIfSquareAreCompleted(Lines);
     if (completedLines > 2)
     {
         //TODO : Play bonus
     }
+   
+   var totalScores =10 * completedLines;
+        GameEvent.AddScores(totalScores);
+
    }
-    //TODO : Add Scores
-   private int CheckIfSquareAreCompleted(List<int[]> data)
+       private int CheckIfSquareAreCompleted(List<int[]> data)
     {
         List<int[]>completeLines = new List<int[]>();
         var linesComplete = 0;

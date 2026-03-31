@@ -5,6 +5,8 @@ using System;
 
 public class GameEvent : MonoBehaviour
 {
+   public static Action<int> AddScores;
+
     public static Action CheckIfShapeCanBePlaced;
     public static Action MoveShapeToStartPosition;
 
