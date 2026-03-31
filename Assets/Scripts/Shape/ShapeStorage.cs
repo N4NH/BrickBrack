@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShapeStorage : MonoBehaviour
+
 {
     public List<ShapeData> shapeData;
     public List<Shape> shapeList;
+
+    private void OnEnable(){
+        GameEvent.RequestNewShape += RequestNewShape;
+    }
+    private void OnDisable(){
+        GameEvent.RequestNewShape -= RequestNewShape;
+    }
     
     void Start()
     {
@@ -17,10 +25,19 @@ public class ShapeStorage : MonoBehaviour
 
     public Shape GetCurrentSelectedShape(){
         foreach(var shape in shapeList){
-            if(shape.InOnStartPosition() == false && shape.IsAnyOfShapeSquareActive())
+            if(shape.IsOnStartPosition() == false && shape.IsAnyOfShapeSquareActive())
             return shape;
         }
         Debug.LogError("No shape is currently selected");
         return null;
+    }
+
+    private void RequestNewShape()
+    {
+        foreach(var shape in shapeList)
+        {
+           var shapeIndex = UnityEngine.Random.Range(0 , shapeData.Count);
+           shape.RequestNewShape(shapeData[shapeIndex]);
+        }
     }
 }

@@ -34,13 +34,16 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
 
     private void OnEnable(){
         GameEvent.MoveShapeToStartPosition += MoveShapeToStartPosition;
+        GameEvent.SetShapeInactive += SetShapeInactive;
     }
 
     private void OnDisable(){
         GameEvent.MoveShapeToStartPosition -= MoveShapeToStartPosition;
+        GameEvent.SetShapeInactive -= SetShapeInactive;
     }
 
-    public bool InOnStartPosition(){
+
+    public bool IsOnStartPosition(){
         return _transform.localPosition == _startPosition;
     }
 
@@ -62,6 +65,19 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
         _shapeActive = false;
     }
 
+
+    private void SetShapeInactive()
+    {
+       if (IsOnStartPosition() == false && IsAnyOfShapeSquareActive()){
+            foreach(var square in _currentShape)
+            {
+                square.gameObject.SetActive(false);
+            }
+        }
+          
+    }
+
+
     public void ActivateShape(){
         if(!_shapeActive){
             foreach(var square in _currentShape){
@@ -74,6 +90,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
     public void RequestNewShape(ShapeData shapeData){
         _transform.localPosition = _startPosition;
         CreateShape(shapeData);
+         _shapeActive = true; 
     }
     public void CreateShape(ShapeData shapeData){
         CurrentShapeData = shapeData;
@@ -96,7 +113,8 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
         for(var row = 0; row < shapeData.rows; row++){
             for(var column = 0; column < shapeData.columns; column++){
                 if(shapeData.board[row].column[column]){
-                    _currentShape[currentIndexInList].SetActive(true);
+                   _currentShape[currentIndexInList].GetComponent<ShapeSquare>().ActivateShape();
+
                     _currentShape[currentIndexInList].GetComponent<RectTransform>().localPosition = new Vector2(GetXPositionForShapeSquare(shapeData, column, moveDistance), GetYPositionForShapeSquare(shapeData, row, moveDistance));
                     currentIndexInList++;
                 }
