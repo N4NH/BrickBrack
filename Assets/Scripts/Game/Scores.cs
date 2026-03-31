@@ -27,5 +27,6 @@ public class Scores : MonoBehaviour
     private void UpdateScoreText()
     {
         ScoreText.text = currentScores_.ToString();
+        Debug.Log("Scores: " + currentScores_);
     }
 }

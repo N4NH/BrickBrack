@@ -186,6 +186,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e8b9868c6b136a4da60435691f03992, type: 2}
   - {fileID: 11400000, guid: cd50f82984632544989d9bf20fa244bb, type: 2}
   - {fileID: 11400000, guid: 4eb51834228918841a62f84fee2d9ae9, type: 2}
+  - {fileID: 11400000, guid: a546e19a8b029ab4a9a0690bd28e030b, type: 2}
+  - {fileID: 11400000, guid: 4ac2b6344e9a3b841bc121a818b20a8d, type: 2}
+  - {fileID: 11400000, guid: 9cf32d7f2cc978b449383873d42afbe1, type: 2}
   shapeList:
   - {fileID: 866603649}
   - {fileID: 510569923}

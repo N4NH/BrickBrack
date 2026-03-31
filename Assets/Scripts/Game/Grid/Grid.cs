@@ -171,7 +171,7 @@ public class Grid : MonoBehaviour
         //TODO : Play bonus
     }
    
-   var totalScores =10 * completedLines;
+   var totalScores =10 * completedLines * completedLines;
     GameEvent.AddScores(totalScores);
 
    }
