@@ -139,6 +139,7 @@ public class Grid : MonoBehaviour
             }
 
             CheckIfAnyLinesIsCompleted();
+            CheckIfPlayerLost();
         }
     else{
         GameEvent.MoveShapeToStartPosition();
@@ -246,8 +247,8 @@ public class Grid : MonoBehaviour
         }
         if(validShapes == 0)
         {
-            //GameEvent.GameOver(false);
-            Debug.Log("Game Over");
+            GameEvent.GameOver?.Invoke(false);
+           // Debug.Log("Game Over");
         }
     }
     private bool CheckIfShapeCanBePlacedOnGrid(Shape currentShape)
