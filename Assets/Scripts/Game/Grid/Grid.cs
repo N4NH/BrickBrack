@@ -164,18 +164,7 @@ public class Grid : MonoBehaviour
             }
         Lines.Add(data.ToArray());
     }
-    //square
-    for(var square =0 ; square < 9; square++)
-    {
-        List<int> data = new List<int> (9);
-        for(var index=0; index <9; index++)
-            {
-                data.Add(_lineIndicator.square_data[index,square]);
-            }
-            Lines.Add(data.ToArray());
-    }
 
-    
     var completedLines = CheckIfSquareAreCompleted(Lines);
     if (completedLines > 2)
     {
@@ -248,7 +237,7 @@ public class Grid : MonoBehaviour
         if(validShapes == 0)
         {
             GameEvent.GameOver?.Invoke(false);
-           // Debug.Log("Game Over");
+            Debug.Log("Game Over");
         }
     }
     private bool CheckIfShapeCanBePlacedOnGrid(Shape currentShape)
