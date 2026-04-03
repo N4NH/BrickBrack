@@ -8,15 +8,13 @@ public class GameOverPopup : MonoBehaviour
     public GameObject loosePopup;
     public GameObject newBestScorePopup;
  
-     
-   
     void Start()
     {
         gameOverPopup .SetActive(false);
-        
     }
     private void OnEnable(){
     GameEvent.GameOver += OnGameOverPopup;
+    GameManager.Instance.ShowInterstitialAd();
     }
     private void OnDisable()
     {
