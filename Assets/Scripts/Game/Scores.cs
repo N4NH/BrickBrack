@@ -11,6 +11,7 @@ public class BestScoreData
 
 public class Scores : MonoBehaviour
 {
+    public SquareTextureData squareTextureData;
  public Text ScoreText;
 
  private bool newBestScore = false;
@@ -30,12 +31,13 @@ private IEnumerator ReadDataFile()
 {
     bestScores = BinaryDataStream.Read<BestScoreData>(bestScoreKey_);
     yield return new WaitForEndOfFrame();
-    Debug.Log("Read Best Scores = " + bestScores.score);
+    GameEvent.UpdateBestScoreBar(currentScores_, bestScores.score);
 }
  void Start()
     {
         currentScores_ = 0;
         newBestScore = false;
+        squareTextureData.SetStartColor();
         UpdateScoreText();
        
     }
@@ -60,10 +62,20 @@ private IEnumerator ReadDataFile()
         {
             bestScores.score = currentScores_;
             newBestScore = true;
+            SaveBestScores(true);
         }
-
+        UpdateSquareColor();
         GameEvent.UpdateBestScoreBar(currentScores_, bestScores.score);
         UpdateScoreText();
+    }
+
+    private void UpdateSquareColor()
+    {
+        if (GameEvent.UpdateSquareColor != null && currentScores_ >= squareTextureData.thresholdVal)
+        {
+            squareTextureData.UpdateColors(currentScores_);
+            GameEvent.UpdateSquareColor(squareTextureData.currentColor);
+        }
     }
     private void UpdateScoreText()
     {
