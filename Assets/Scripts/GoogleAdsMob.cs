@@ -4,16 +4,23 @@ using System;
 
 public class GoogleAdsMob : MonoBehaviour
 {
-    void Start()
+    public void LoadAllAds()
     {
         MobileAds.Initialize((InitializationStatus status) =>
         {
             LoadBottomBanner();
             LoadInterstitialAd();
             LoadAppOpenAd();
+            LoadRewardedAd();
         });
     }
-
+    private void OnApplicationQuit()
+    {
+        _bottomBannerView?.Destroy();
+        InterstitiaAd?.Destroy();
+        _appOpenAd?.Destroy();
+        _rewardedAd?.Destroy();
+    }
 
     #region BANNER 
     private BannerView _bottomBannerView;
@@ -32,7 +39,7 @@ public class GoogleAdsMob : MonoBehaviour
 
     public void LoadBottomBanner()
     {
-        if (_bottomBannerView != null) _bottomBannerView.Destroy();
+        if (_bottomBannerView != null) return;
         AdSize adaptiveSize = AdSize.GetPortraitAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
         _bottomBannerView = new BannerView(Id_Banner1, adaptiveSize, AdPosition.Bottom);
         _bottomBannerView.LoadAd(new AdRequest());
@@ -45,6 +52,7 @@ public class GoogleAdsMob : MonoBehaviour
         }
         return 0;
     }
+    
     #endregion
 
 
@@ -151,8 +159,66 @@ public class GoogleAdsMob : MonoBehaviour
     }
     #endregion
 
-    private void OnApplicationQuit()
+    #region RewardedAd
+    private string _rewardedAdUnitId = "ca-app-pub-1666762810401308/9606684476";
+    private RewardedAd _rewardedAd;
+
+    public void LoadRewardedAd()
     {
-        _bottomBannerView?.Destroy();
+        if (_rewardedAd != null)
+        {
+            _rewardedAd.Destroy();
+            _rewardedAd = null;
+        }
+
+        Debug.Log("Loading rewarded ad.");
+        var adRequest = new AdRequest();
+
+        RewardedAd.Load(_rewardedAdUnitId, adRequest, (RewardedAd ad, LoadAdError error) =>
+        {
+            if (error != null || ad == null)
+            {
+                Debug.LogError("Rewarded ad failed to load: " + error);
+                return;
+            }
+            Debug.Log("Rewarded ad loaded.");
+            _rewardedAd = ad;
+
+            RegisterRewardedHandlers(ad);
+        });
     }
+
+    public void ShowRewardedAd(Action onUserEarnedReward)
+    {
+        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        {
+            _rewardedAd.Show((Reward reward) =>
+            {
+                Debug.Log("User earned reward.");
+                onUserEarnedReward?.Invoke();
+            });
+        }
+        else
+        {
+            Debug.LogError("Rewarded ad is not ready yet.");
+            LoadRewardedAd();
+        }
+    }
+
+    private void RegisterRewardedHandlers(RewardedAd ad)
+    {
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.Log("Rewarded ad closed.");
+            LoadRewardedAd();
+        };
+
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Rewarded ad failed to show: " + error);
+            LoadRewardedAd();
+        };
+    }
+    #endregion
+
 }
