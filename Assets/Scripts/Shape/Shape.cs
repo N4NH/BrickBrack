@@ -8,7 +8,6 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointer
     public GameObject squareShapeImage;
     public Vector3 shapeSelectedScale;
     public Vector2 offset = new Vector2(0f, 700f);
-    public ShapeStorage shapeStorage;
 
 
     [HideInInspector]
