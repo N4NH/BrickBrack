@@ -435,15 +435,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372023562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -19.199469}
+  m_LocalPosition: {x: 0, y: 0, z: -19.199766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1426828685}
+  m_Father: {fileID: 1161645108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 336.5, y: 838.5}
+  m_AnchoredPosition: {x: 336.5, y: 846.4879}
   m_SizeDelta: {x: 144.50427, y: 155.9508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &372023564
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1161645109}
+      - m_Target: {fileID: 810864841}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: OpenSettingPanel
         m_Mode: 1
@@ -577,7 +577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: 50.0006}
+  m_AnchoredPosition: {x: -20, y: 50.00061}
   m_SizeDelta: {x: 40, y: 99.9988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 810864839}
   - component: {fileID: 810864841}
   m_Layer: 5
-  m_Name: Setting
+  m_Name: SettingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161645108}
-  - component: {fileID: 1161645109}
   m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
@@ -1470,6 +1469,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 372023563}
   - {fileID: 810864838}
   m_Father: {fileID: 1426828685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1478,28 +1478,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -7.987915}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1161645109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161645107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2122fadff71abc54f975b68ae7fae708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingPanel: {fileID: 810864837}
-  musicIcon: {fileID: 0}
-  soundIcon: {fileID: 0}
-  vibrateIcon: {fileID: 0}
-  musicOnSprite: {fileID: 0}
-  musicOffSprite: {fileID: 0}
-  soundOnSprite: {fileID: 0}
-  soundOffSprite: {fileID: 0}
-  vibrateOnSprite: {fileID: 0}
-  vibrateOffSprite: {fileID: 0}
 --- !u!1 &1253381064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1161645109}
+      - m_Target: {fileID: 810864841}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: CloseSettingPanel
         m_Mode: 1
@@ -1896,7 +1874,6 @@ RectTransform:
   - {fileID: 2129320559}
   - {fileID: 1161645108}
   - {fileID: 383788839}
-  - {fileID: 372023563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
