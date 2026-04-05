@@ -384,4 +384,63 @@ public class Grid : MonoBehaviour
       }
       return squareList;
     }
+
+    public void ClearLinesForRevive()
+    {
+        // Mặc định chọn ngẫu nhiên Xóa Hàng hoặc Cột
+        bool isRow = Random.Range(0, 2) == 0;
+        int startIndex = Random.Range(0, rows - 2); // Chọn v�?trí bắt đầu (t�?0 đến tối đa 6)
+
+        List<int[]> linesToClear = new List<int[]>();
+
+        if (isRow)
+        {
+            for (int r = startIndex; r < startIndex + 3; r++)
+            {
+                List<int> lineData = new List<int>();
+                for (int c = 0; c < columns; c++)
+                {
+                    lineData.Add(_lineIndicator.line_data[r, c]);
+                }
+                linesToClear.Add(lineData.ToArray());
+            }
+        }
+        else
+        {
+            for (int c = startIndex; c < startIndex + 3; c++)
+            {
+                linesToClear.Add(_lineIndicator.GetVerticalLine(c));
+            }
+        }
+
+        // Tiến hành dọn dẹp các khối trong 3 hàng/cột này
+        foreach (var line in linesToClear)
+        {
+            foreach (var squareIndex in line)
+            {
+                var comp = _gridSquares[squareIndex].GetComponent<GridSquare>();
+                if (comp.SquareOccupied)
+                {
+                    comp.Deactivate();
+                    comp.ClearOccupied();
+                }
+            }
+        }
+
+        // Bật sáng lại tất c�?các Shape dưới khay (nếu chúng b�?làm m�?
+        for (var index = 0; index < shapeStorage.shapeList.Count; index++)
+        {
+            if (shapeStorage.shapeList[index] != null)
+            {
+                // Ch�?kích hoạt lại hình nếu nó vẫn còn trên khay ch�?đặt
+                if (shapeStorage.shapeList[index].IsOnStartPosition())
+                {
+                    shapeStorage.shapeList[index].ActivateShape();
+                }
+            }
+        }
+
+        // Chạy lại hàm kiểm tra đ�?game nhận diện rằng người chơi đã có th�?tiếp tục
+        CheckIfPlayerLost();
+    }
 }
