@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            googleAdsMob.LoadAllAds();
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -49,6 +50,13 @@ public class GameManager : MonoBehaviour
         if (!paused && googleAdsMob != null)
         {
             googleAdsMob.ShowAppOpenAd();
+        }
+    }
+    public void ShowRewardedAd(System.Action onUserEarnedReward)
+    {
+        if (googleAdsMob != null)
+        {
+            googleAdsMob.ShowRewardedAd(onUserEarnedReward);
         }
     }
     #endregion
