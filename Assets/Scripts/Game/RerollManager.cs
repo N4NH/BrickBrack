@@ -6,7 +6,6 @@ public class RerollManager : MonoBehaviour
 {
     [Header("Giao diện UI")]
     public TMP_Text rerollText;          // Kéo thẻ TextMeshPro hiển thị số 3, 2, 1 vào đây
-    public GameObject adsIcon;       // (Tùy chọn) Nút hình Tivi/Video Ads. Kéo vào đây nếu có
 
     [Header("Hệ thống")]
     public ShapeStorage shapeStorage; // Kéo thẻ ShapeStorage của bạn chứa 3 mảnh hình vào đây
@@ -48,7 +47,7 @@ public class RerollManager : MonoBehaviour
             // Tận dụng lại hàm Ads bạn đã tạo ở bài Code trước (Revive)
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.ShowRewardedAd(ExecuteReroll);
+                GameManager.Instance.ShowRewardedAd(ResetRerolls);
             }
             else
             {
@@ -73,28 +72,25 @@ public class RerollManager : MonoBehaviour
             }
         }
     }
+    private void ResetRerolls()
+    {
+        freeRerolls = 3;
+        UpdateUI();
+    }
 
     private void UpdateUI()
     {
         // Hiển thị số lượt lên chữ (Ví dụ: "3")
         if (rerollText != null)
-        {
-            rerollText.text = freeRerolls.ToString();
-        }
-
-        // Tính năng Tự động xịn: Nếu hết 3 lượt, nó sẽ giấu Số đi, và móc cái Ảnh Tivi Quảng cáo lên!
-        if (adsIcon != null)
-        {
-            bool hetLuotCày = (freeRerolls <= 0);
-            
-            // Hiện icon Ads nếu hết lượt
-            adsIcon.SetActive(hetLuotCày);
-            
-            // Ẩn chữ số đếm nếu hiện UI ảnh Ads
-            if(rerollText != null) 
+        {if (freeRerolls > 0)
             {
-                 rerollText.gameObject.SetActive(!hetLuotCày);
+                rerollText.text = freeRerolls.ToString();
             }
+            else
+            {
+                rerollText.text = "+";
+            }
+            
         }
     }
 }

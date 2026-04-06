@@ -18,17 +18,6 @@ public class SettingManager : MonoBehaviour
     public Sprite vibrateOnSprite;
     public Sprite vibrateOffSprite;
 
-    private void Start()
-    {
-        if (settingPanel != null)
-        {
-            settingPanel.SetActive(false);
-        }
-
-        // Cập nhật hình ảnh nút bấm ngay khi mới vào game
-        UpdateUI();
-    }
-
     public void OpenSettingPanel()
     {
         if (settingPanel != null)

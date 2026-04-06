@@ -1291,7 +1291,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: offset.y
-      value: 1100
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage
@@ -4317,7 +4317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rerollText: {fileID: 935628516}
-  adsIcon: {fileID: 0}
   shapeStorage: {fileID: 17971083}
 --- !u!1001 &2091525516
 PrefabInstance:
@@ -4327,10 +4326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777129003}
     m_Modifications:
-    - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
-      propertyPath: offset.y
-      value: 1100
-      objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage
       value: 
@@ -4446,7 +4441,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: offset.y
-      value: 1100
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage
