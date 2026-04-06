@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squareTextureData: {fileID: 11400000, guid: b326c0a069afbcf4b9858a4b83df4b36, type: 2}
   ScoreText: {fileID: 1655781966}
+  newBestScore: 0
 --- !u!1 &186633742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3942,6 +3943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 269410911}
+  NewBestScore: {fileID: 1201629386}
 --- !u!1 &1823724924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8451142537651520474, guid: 04715610741582a4ab843f5ac452111b, type: 3}

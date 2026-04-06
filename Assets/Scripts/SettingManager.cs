@@ -18,23 +18,10 @@ public class SettingManager : MonoBehaviour
     public Sprite vibrateOnSprite;
     public Sprite vibrateOffSprite;
 
-    public void OpenSettingPanel()
+    void Start()
     {
-        if (settingPanel != null)
-        {
-            settingPanel.SetActive(true);
-        }
         UpdateUI();
     }
-
-    public void CloseSettingPanel()
-    {
-        if (settingPanel != null)
-        {
-            settingPanel.SetActive(false);
-        }
-    }
-
     // --- CÁC HÀM GẮN VÀO SỰ KIỆN CLICK CỦA NÚT BẤM ---
 
     public void OnMusicButtonClicked()

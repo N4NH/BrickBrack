@@ -14,7 +14,7 @@ public class Scores : MonoBehaviour
     public SquareTextureData squareTextureData;
  public Text ScoreText;
 
- private bool newBestScore = false;
+ public bool newBestScore = false;
  private BestScoreData bestScores = new BestScoreData();
  private int currentScores_;
 
@@ -59,7 +59,7 @@ private IEnumerator ReadDataFile()
     {
         currentScores_ += scores;
         if(currentScores_ > bestScores.score)
-        {
+        {          
             bestScores.score = currentScores_;
             newBestScore = true;
             SaveBestScores(true);
