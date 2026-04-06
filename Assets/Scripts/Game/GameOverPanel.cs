@@ -30,10 +30,6 @@ public class GameOverPanel : MonoBehaviour
         {
             NewBestScore.SetActive(true);
         }
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.ShowInterstitialAd();
-        }
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);

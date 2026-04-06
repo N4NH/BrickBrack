@@ -663,6 +663,7 @@ GameObject:
   - component: {fileID: 269410912}
   - component: {fileID: 269410915}
   - component: {fileID: 269410914}
+  - component: {fileID: 269410916}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -731,6 +732,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269410911}
   m_CullTransparentMesh: 1
+--- !u!114 &269410916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269410911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fe1069b739320499ebfb2c14cf5c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &292367619
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +781,8 @@ RectTransform:
   - {fileID: 186633743}
   - {fileID: 573116963}
   - {fileID: 2051276215}
+  - {fileID: 1794297935}
+  - {fileID: 1825294860}
   m_Father: {fileID: 1750649413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
