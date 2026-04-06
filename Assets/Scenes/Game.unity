@@ -766,9 +766,7 @@ RectTransform:
   - {fileID: 152020500}
   - {fileID: 186633743}
   - {fileID: 573116963}
-  - {fileID: 1794297935}
   - {fileID: 2051276215}
-  - {fileID: 1825294860}
   m_Father: {fileID: 1750649413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1291,7 +1289,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: offset.y
-      value: 1100
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage
@@ -1716,9 +1714,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScript, Assembly-CSharp
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 1794297936}
+        m_TargetAssemblyTypeName: GameOverPanel, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4317,7 +4315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rerollText: {fileID: 935628516}
-  adsIcon: {fileID: 0}
   shapeStorage: {fileID: 17971083}
 --- !u!1001 &2091525516
 PrefabInstance:
@@ -4327,10 +4324,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777129003}
     m_Modifications:
-    - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
-      propertyPath: offset.y
-      value: 1100
-      objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage
       value: 
@@ -4446,7 +4439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: offset.y
-      value: 1100
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 5806589781425615168, guid: a56873826114188498c66bc3a47a7cff, type: 3}
       propertyPath: shapeStorage

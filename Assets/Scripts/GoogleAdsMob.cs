@@ -4,6 +4,8 @@ using System;
 
 public class GoogleAdsMob : MonoBehaviour
 {
+    private float _lastAdTimestamp = -999f;
+    [SerializeField] private float cooldownTime = 30f;
     public void LoadAllAds()
     {
         MobileAds.Initialize((InitializationStatus status) =>
@@ -20,6 +22,11 @@ public class GoogleAdsMob : MonoBehaviour
         InterstitiaAd?.Destroy();
         _appOpenAd?.Destroy();
         _rewardedAd?.Destroy();
+    }
+    public bool CanShowAd()
+    {
+        float timePassed = Time.time - _lastAdTimestamp;
+        return timePassed >= cooldownTime;
     }
 
     #region BANNER 
@@ -52,7 +59,7 @@ public class GoogleAdsMob : MonoBehaviour
         }
         return 0;
     }
-    
+
     #endregion
 
 
@@ -85,9 +92,16 @@ public class GoogleAdsMob : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
+        if (!CanShowAd())
+        {
+            Debug.Log("Ad is on cooldown. Please wait.");
+            return;
+        }
+
         if (InterstitiaAd != null && InterstitiaAd.CanShowAd())
         {
             Debug.Log("Showing interstitial ad.");
+            _lastAdTimestamp = Time.time;
             InterstitiaAd.Show();
         }
         else
@@ -147,9 +161,15 @@ public class GoogleAdsMob : MonoBehaviour
 
     public void ShowAppOpenAd()
     {
+        if (!CanShowAd())
+        {
+            Debug.Log("Ad is on cooldown. Please wait.");
+            return;
+        }
         if (_appOpenAd != null && _appOpenAd.CanShowAd() && DateTime.Now < _expireTime)
         {
             Debug.Log("Showing App Open Ad.");
+            _lastAdTimestamp = Time.time;
             _appOpenAd.Show();
         }
         else
