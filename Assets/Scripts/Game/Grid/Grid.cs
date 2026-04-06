@@ -155,7 +155,7 @@ public class Grid : MonoBehaviour
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.placeBlockClip);
-                AudioManager.Instance.Vibrate();
+
             }
             // -----------------------------------------------------------
 

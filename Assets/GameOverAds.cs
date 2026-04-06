@@ -6,6 +6,8 @@ public class GameOverAds : MonoBehaviour
 {
     void Start()
     {
+        AudioManager.Instance.Vibrate();
         GameManager.Instance.ShowInterstitialAd();
+
     }
 }
