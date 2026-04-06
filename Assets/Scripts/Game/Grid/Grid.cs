@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -240,7 +240,6 @@ public class Grid : MonoBehaviour
     }
     if(colorToPlayBonusFor == Config.SquareColor.NotSet)
     {
-        Debug.Log("Cannot find color for bonus");
         return 0;
     }
 

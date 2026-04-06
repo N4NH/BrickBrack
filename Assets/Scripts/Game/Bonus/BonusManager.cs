@@ -29,8 +29,10 @@ public class BonusManager : MonoBehaviour
                 bonus.SetActive(true);
             }
         }
-        
-        StartCoroutine(DeactivateBonus(obj));
+        if (obj != null)
+        {
+            StartCoroutine(DeactivateBonus(obj));
+        }
     }
 
     private IEnumerator DeactivateBonus(GameObject obj)
