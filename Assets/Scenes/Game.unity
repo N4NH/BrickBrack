@@ -767,8 +767,8 @@ RectTransform:
   - {fileID: 186633743}
   - {fileID: 1825294860}
   - {fileID: 573116963}
-  - {fileID: 1794297935}
   - {fileID: 2051276215}
+  - {fileID: 1794297935}
   m_Father: {fileID: 1750649413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1716,9 +1716,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScript, Assembly-CSharp
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 1794297936}
+        m_TargetAssemblyTypeName: GameOverPanel, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
