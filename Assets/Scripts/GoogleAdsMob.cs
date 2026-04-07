@@ -163,6 +163,7 @@ public class GoogleAdsMob : MonoBehaviour
     {
         if (!CanShowAd())
         {
+            
             Debug.Log("Ad is on cooldown. Please wait.");
             return;
         }
@@ -212,6 +213,7 @@ public class GoogleAdsMob : MonoBehaviour
     {
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
+            
             _rewardedAd.Show((Reward reward) =>
             {
                 Debug.Log("User earned reward.");
@@ -220,6 +222,7 @@ public class GoogleAdsMob : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.AdsTB();
             Debug.LogError("Rewarded ad is not ready yet.");
             LoadRewardedAd();
         }

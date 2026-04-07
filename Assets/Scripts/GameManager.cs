@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [SerializeField] private GoogleAdsMob googleAdsMob;
+    [SerializeField] private GameObject adsTB;
+    [HideInInspector] public Transform currentCanvas;
     void Awake()
     {
         QualitySettings.vSyncCount = 0;
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -25,6 +28,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void AdsTB()
+    {
+        Instantiate(adsTB, currentCanvas);
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
